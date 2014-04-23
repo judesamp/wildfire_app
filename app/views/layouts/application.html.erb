@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wildfires!</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+      <nav class="navbar navbar-default" role="navigation">
+    <a class="navbar-brand" href="/">Wildfires!</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/wildfires">All Fires</a>
+      </li>
+      <li class="">
+        <a href="/wildfires/active">All Active Fires</a>
+      </li>
+      <li>
+        <a href="/wildfires/inactive">Inactive Fires</a>
+      </li>
+      <li>
+        <a href="/wildfires/search">Search</a>
+      </li>
+    </ul>
+  </nav>
+  </div>
+
+
+<div class="add_top_margin container">
+  <div class="row">
+    <%= yield %>
+  </div>
+</div>
+
+
+
+</body>
+</html>

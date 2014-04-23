@@ -1,0 +1,6 @@
+.col-lg8.col-md-8.col-sm-8.col-sm-offset-2.col-md-offset-2.col-lg-offset-2
+  .panel.panel-default.custom_panel.centered
+    = link_to @location.name, "/locations/#{@location.id}"
+    %h4= "Description: #{@location.name}"
+    %p= "Associated Fire Fighting Unit: #{@location.unit}"
+    %br

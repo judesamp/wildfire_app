@@ -1,0 +1,18 @@
+%h1 Active Wildfires
+
+- @wildfires.each do |w|
+  = w.incident
+  %br
+  Description
+  = w.description
+  %br
+  Acres:
+  = w.acres
+  %br
+  Status:
+  = w.status
+  %br
+  = link_to "change_fire_status", change_status_wildfire_path(w), method: 'patch'
+  %br
+  %br
+= button_to "Add Wildfire", new_wildfire_path, method: 'get'

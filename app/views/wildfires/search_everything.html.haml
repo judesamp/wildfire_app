@@ -1,0 +1,28 @@
+%h1 Search Results
+
+- if @results.empty?
+  There are no matches in your database
+-else
+  - @results.each do |r|
+    = r.incident
+    %br
+    = r.description
+    %br
+    Acres: 
+    = r.acres
+    %br
+    Status: 
+    = r.status
+    %br
+    Location
+    -if r.location
+      = r.location.name
+    %br
+    %br
+/     %br
+/     = link_to "change_fire_status", change_status_wildfire_path(w), method: 'patch'
+/     %br
+/     %br
+
+  
+= button_to "Add Wildfire", new_wildfire_path, method: 'get'

@@ -1,0 +1,19 @@
+%h1 All locations
+
+.row
+  -unless @locations.empty?
+    - @locations.each do |location|
+      .col-lg-4.col-md-4.col-sm-4
+      .panel.panel-default.custom_panel
+
+        = link_to location.name, "/locations/#{location.id}"
+        %br
+        Location Unit
+        = location.unit
+        %br
+        Dedicated Wildfire Unit?
+        = location.dedicated_wildfire_unit
+        %br
+        %br
+  -else
+  "There are no locations in the database."

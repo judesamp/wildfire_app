@@ -1,0 +1,30 @@
+%h1 All Wildfires
+
+= button_to "Add New Wildfire", new_wildfire_path, method: 'get'
+
+-unless @wildfires.empty?
+
+  .row
+    - @wildfires.each do |w|
+      .col-lg-4.col-md-4.col-sm-4
+        .panel.panel-default.custom_panel
+        = link_to w.incident, "/wildfires/#{w.id}"
+        %br
+        = w.description
+        %br
+        Acres:
+        = w.acres
+        %br
+
+        -if w.location
+          Location
+          = w.location.name
+        %br
+        Status:
+        = w.status
+        %br
+        = link_to "change_fire_status", change_status_wildfire_path(w), method: 'patch'
+        %br
+        %br
+-else
+  "There are no wildfires in your database"

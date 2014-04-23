@@ -1,0 +1,53 @@
+= form_for @new_location, url: locations_path do |l|
+
+  = l.label :name
+  = l.text_field :name
+  %br
+  = l.label :unit
+  = l.text_field :unit
+  %br
+  = l.label :dedicated_wildfire_unit
+  = l.text_field :dedicated_wildfire_unit
+
+  %br
+
+  %br
+  = l.submit
+
+
+
+
+
+
+
+
+
+%h1 Attempt at Nested Form
+
+
+=form_for @new_location do |l|
+  
+  = l.label :name
+  = l.text_field :name
+  %br
+  = l.label :unit
+  = l.text_field :unit
+  %br
+  = l.label :dedicated_wildfire_unit
+  = l.text_field :dedicated_wildfire_unit
+
+  %br
+  = l.fields_for :wildfires, :html => { :multipart => true } do |w|
+    = w.label :incident
+    = w.text_field :incident
+    %br
+    %br
+
+
+  = l.submit    
+
+
+
+
+
+
