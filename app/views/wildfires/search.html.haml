@@ -15,7 +15,7 @@
 
 
 = form_tag(chained_search_wildfires_path, method: "get") do
-  = label_tag(:location, "Find a wildfire location and status:")
+  = label_tag(:location, "Find a wildfire by location and status:")
   = select :search, :state, options_for_select(Location.all.collect {|d| [d.name]})
   = select :search, :status, options_for_select(["active", "inactive"])
   / = text_field_tag("search[value]", params[:search])

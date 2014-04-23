@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  root 'wildfires#index'
   get 'wildfires/active' => 'wildfires#active'
 
   get 'wildfires/inactive' => 'wildfires#inactive'
