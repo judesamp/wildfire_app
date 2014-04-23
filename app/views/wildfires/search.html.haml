@@ -1,3 +1,7 @@
+
+/ a first attempt; very hacky, cleary not the right way to go
+%h1 Search through Wildfires and their locations
+
 %form{ :action => "/wildfires/process_search", :method => "post" }
   / check on this; why necessary?
   = select(:search, :type, options_for_select([["location", "location"], ["acres (greater than)", "acres"], ["status", "status"]]))
@@ -5,16 +9,40 @@
   %input{ :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token} 
   %input{ :type => "submit" }
 
-  
+%br
+%br
+%br
+
+
+= form_tag(chained_search_wildfires_path, method: "get") do
+  = label_tag(:location, "Find a wildfire location and status:")
+  = select :search, :state, options_for_select(Location.all.collect {|d| [d.name]})
+  = select :search, :status, options_for_select(["active", "inactive"])
+  / = text_field_tag("search[value]", params[:search])
+
+  = submit_tag("Search")
+
+%br
+%br
+
 %h1 Search: another approach
 = form_tag(another_search_wildfires_path, method: "get") do
   = label_tag(:location, "Find a wildfire location:")
   = text_field_tag(:search, params[:search])
   = submit_tag("Search")
 
+%br
+%br
 
 %h1 Search description, status, and incident (Following second approach)
 = form_tag search_everything_wildfires_path, method: "get" do
   = label_tag "Find anything:"
   = text_field_tag(:search, params[:search])
   = submit_tag("Search")
+
+%br
+%br
+%br
+%br
+
+%p this is the end of my search

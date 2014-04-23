@@ -26,11 +26,14 @@ Rails.application.routes.draw do
         end
 
         collection do
+          #### first three from first search attempt; not really necessary
           get :search
           post :process_search
           get :results
+
           get :another_search
           get :search_everything
+          get :chained_search
         end
       end
 

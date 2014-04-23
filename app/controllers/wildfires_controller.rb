@@ -52,11 +52,12 @@ class WildfiresController < ApplicationController
   def search 
   end
 
-  def process_search
-    redirect_to results_wildfires_path(request.parameters)
-  end
+  # def process_search
+  #   redirect_to results_wildfires_path(request.parameters)
+  # end
 
   def results
+    puts params
     type = params[:search][:type]
     criteria = params[:search][:criteria]
 
@@ -77,6 +78,18 @@ class WildfiresController < ApplicationController
   def search_everything
     search_string = params[:search]
     @results = Wildfire.where("incident LIKE ? OR description LIKE ? OR status LIKE ?", "%#{search_string}%", "%#{search_string}%", "%#{search_string}%")
+  end
+
+  def chained_search
+    state = params[:search][:state]
+    status = params[:search][:status]
+
+    @results = Wildfire.joins(:location).where("name LIKE ? AND status LIKE ?", state, status)
+    render results_wildfires_path
+  end
+
+  def process_search
+    redirect_to results_wildfires_path(request.parameters)
   end
 
   private

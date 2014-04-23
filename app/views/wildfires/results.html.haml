@@ -1,6 +1,6 @@
 %h1 Search Results
 
-- if @results.empty?
+- if @results.nil?
   There are no matches in your database
 -else
   - @results.each do |r|
@@ -14,7 +14,7 @@
     Status: 
     = r.status
     %br
-    Location
+    Location:
     -if r.location
       = r.location.name
     %br
@@ -26,3 +26,4 @@
 
   
 = button_to "Add Wildfire", new_wildfire_path, method: 'get'
+
