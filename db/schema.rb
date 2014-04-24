@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423121339) do
+ActiveRecord::Schema.define(version: 20140424025814) do
 
   create_table "locations", force: true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140423121339) do
     t.datetime "updated_at"
     t.text     "description",                          default: "It was a raging inferno!"
     t.integer  "location_id"
+    t.string   "fire_image"
   end
 
 end

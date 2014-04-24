@@ -1,27 +1,6 @@
-=form_for @new_wildfire, url: wildfires_path do |f|
-  = f.label :incident
-  = f.text_field :incident
-  %br
-  = f.label :description
-  = f.text_field :description
-  %br
-  = f.label :acres
-  = f.text_field :acres
-  %br
-  = f.label :status
-  = f.text_field :status
-  %br
-  = f.label "Latitude"
-  = f.text_field :lat
-  %br
-  = f.label "Longitude"
-  = f.text_field :lng
-  %br
-
-  = f.select :location_id, Location.all.collect {|d| [d.name, d.id]}
-
-  %br
-  = f.submit
+.col-lg-6.col-md-6.col-sm-6
+  =form_for @new_wildfire, url: wildfires_path  do |f|
+    =render "form", f: f
 
 
 

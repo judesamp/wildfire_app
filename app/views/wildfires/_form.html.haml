@@ -1,0 +1,28 @@
+.panel.panel-default.custom_panel.form-group
+  = f.label :incident
+  = f.text_field :incident, class: "form-control"
+  %br
+  = f.label :description
+  = f.text_field :description, class: "form-control"
+  %br
+  = f.label :acres
+  = f.text_field :acres, class: "form-control"
+  %br
+  = f.label :status
+  = f.text_field :status, class: "form-control"
+  %br
+  = f.label "Latitude"
+  = f.text_field :lat, class: "form-control"
+  %br
+  = f.label "Longitude"
+  = f.text_field :lng, class: "form-control"
+  %br
+  = f.label :fire_image
+  = f.file_field :fire_image
+  %br
+  = f.select :location_id, Location.all.collect {|d| [d.name, d.id]}, class: "form-control"
+
+  %br
+  %br
+  = f.submit
+

@@ -1,4 +1,8 @@
-%h1 All locations
+.row
+  .col-lg-6.col-md-6.col-sm-6
+    %h1.title Locations
+  .col-lg-6.col-md-6.col-sm-6
+    = button_to "Add New Location", new_location_path, method: 'get', class: "add_button"
 
 .row
   -unless @locations.empty?
@@ -6,14 +10,17 @@
       .col-lg-4.col-md-4.col-sm-4
       .panel.panel-default.custom_panel
 
-        = link_to location.name, "/locations/#{location.id}"
-        %br
-        Location Unit
-        = location.unit
+        %h4.title= link_to location.name, "locations/#{location.id}", class: "title_link"
         %br
         Dedicated Wildfire Unit?
-        = location.dedicated_wildfire_unit
+        - response = location.dedicated_wildfire_unit ? "Yes" : "No"
+        = response
+        %br
+        Location Unit:
+        = location.unit
+        
+        
         %br
         %br
   -else
-  "There are no locations in the database."
+    "There are no locations in the database."

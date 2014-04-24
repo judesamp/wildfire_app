@@ -16,6 +16,18 @@ class WildfiresController < ApplicationController
     end
   end
 
+  def edit
+    @wildfire = Wildfire.find(params[:id])
+  end
+
+  def destroy
+    @wildfire = Wildfire.find(params[:id])
+
+    if @wildfire.delete
+      redirect_to wildfires_path
+    end
+  end
+
   def show
     @wildfire = Wildfire.find(params[:id])
   end
@@ -30,11 +42,11 @@ class WildfiresController < ApplicationController
   end
 
   def active
-    @wildfires= Wildfire.where(:status => "active")
+    @wildfires = Wildfire.active
   end
 
   def inactive
-    @wildfires = Wildfire.where(:status => "inactive")
+    @wildfires = Wildfire.inactive
   end
 
   def change_status
@@ -57,7 +69,6 @@ class WildfiresController < ApplicationController
   # end
 
   def results
-    puts params
     type = params[:search][:type]
     criteria = params[:search][:criteria]
 
@@ -92,8 +103,19 @@ class WildfiresController < ApplicationController
     redirect_to results_wildfires_path(request.parameters)
   end
 
+  def scoped_search
+    @results = Wildfire.search(params[:search])
+    render results_wildfires_path
+  end
+
+  def download_fire_image
+    @wildfire = Wildfire.find(params[:id])
+    file = @wildfire.fire_image
+    send_file file.path
+  end
+
   private
   def wildfire_params
-    params.require(:wildfire).permit(:incident, :acres, :status, :lat, :lng, :description, :location_id)
+    params.require(:wildfire).permit(:incident, :acres, :status, :lat, :lng, :description, :location_id, :fire_image)
   end
 end

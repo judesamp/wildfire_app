@@ -1,18 +1,25 @@
-%h1 Active Wildfires
+.row
+  .col-lg-6.col-md-6.col-sm-6
+    %h1.title Active Wildfires
+  .col-lg-6.col-md-6.col-sm-6
+    = button_to "Add New Wildfire", new_wildfire_path, method: 'get', class: "add_button"
 
+.row
 - @wildfires.each do |w|
-  = w.incident
-  %br
-  Description
-  = w.description
-  %br
-  Acres:
-  = w.acres
-  %br
-  Status:
-  = w.status
-  %br
-  = link_to "change_fire_status", change_status_wildfire_path(w), method: 'patch'
-  %br
-  %br
-= button_to "Add Wildfire", new_wildfire_path, method: 'get'
+  .col-lg-6.col-md-6.col-sm-6
+    .panel.panel-default.custom_panel
+      %h4 
+        =w.incident
+      %br
+      Description:
+      = w.description
+      %br
+      Acres:
+      = w.acres
+      %br
+      Status:
+      = w.status
+      %br
+      = link_to "change_fire_status", change_status_wildfire_path(w), method: 'patch'
+      %br
+      %br

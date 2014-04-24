@@ -1,7 +1,13 @@
 .col-lg8.col-md-8.col-sm-8.col-sm-offset-2.col-md-offset-2.col-lg-offset-2
   .panel.panel-default.custom_panel.centered
-    %p= @wildfire.incident
+    = image_tag @wildfire.fire_image.url
+    %p= link_to "Download Image", download_fire_image_wildfire_path
+    %h4= @wildfire.incident
     %p= "#{@wildfire.description}"
     %p= "Acres: #{@wildfire.acres}"
     %p= "Status: #{@wildfire.status}"
     %br
+
+    
+
+    = link_to 'Edit Item', edit_wildfire_path, class: "btn btn-primary form-control"

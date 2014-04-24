@@ -1,1 +1,24 @@
-edit
+.col-sm-6.col-md-6.col-lg-6
+  = form_for @location, url: location_path, method: "PUT" do |l|
+    .form-group
+      = l.label :name
+      = l.text_field :name, class: "form-control"
+      %br
+      = l.label :unit
+      = l.text_field :unit, class: "form-control"
+      %br
+      = l.label :dedicated_wildfire_unit
+      = l.text_field :dedicated_wildfire_unit, class: "form-control"
+
+      %br
+
+      %br
+      = l.submit class: "form-control btn btn-primary form-control"
+
+  -if @location
+    .col-sm-6.col-md-6.col-lg-6
+      = button_to 'Delete this Item', location_path, method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-primary form-control"
+      %br
+      %br
+
+

@@ -4,3 +4,5 @@
     %h4= "Description: #{@location.name}"
     %p= "Associated Fire Fighting Unit: #{@location.unit}"
     %br
+
+    = link_to 'Edit Item', edit_location_path, class: "btn btn-primary form-control"

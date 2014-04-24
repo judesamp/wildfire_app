@@ -1,1 +1,11 @@
-edit
+=form_for @wildfire, url: wildfire_path, action: "PUT" do |f|
+  =render "form", f: f
+  
+.col-lg-12
+  %br
+  = button_to 'Delete this Item', "/wildfires/#{@wildfire.id}", method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-primary form-control"
+
+  %br
+  %br
+  %br
+ 

@@ -1,48 +1,66 @@
 
 / a first attempt; very hacky, cleary not the right way to go
-%h1 Search through Wildfires and their locations
-
-%form{ :action => "/wildfires/process_search", :method => "post" }
-  / check on this; why necessary?
-  = select(:search, :type, options_for_select([["location", "location"], ["acres (greater than)", "acres"], ["status", "status"]]))
-  %input{ :type => "textfield", :name => "search[criteria]"}
-  %input{ :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token} 
-  %input{ :type => "submit" }
-
-%br
-%br
-%br
+%h1.title Search through Wildfires and their locations
 
 
-= form_tag(chained_search_wildfires_path, method: "get") do
-  = label_tag(:location, "Find a wildfire by location and status:")
-  = select :search, :state, options_for_select(Location.all.collect {|d| [d.name]})
-  = select :search, :status, options_for_select(["active", "inactive"])
-  / = text_field_tag("search[value]", params[:search])
-
-  = submit_tag("Search")
-
-%br
-%br
-
-%h1 Search: another approach
-= form_tag(another_search_wildfires_path, method: "get") do
-  = label_tag(:location, "Find a wildfire location:")
-  = text_field_tag(:search, params[:search])
-  = submit_tag("Search")
-
-%br
-%br
-
-%h1 Search description, status, and incident (Following second approach)
-= form_tag search_everything_wildfires_path, method: "get" do
-  = label_tag "Find anything:"
-  = text_field_tag(:search, params[:search])
-  = submit_tag("Search")
+.col-lg-12.col-md-12.col-sm-12.panel.panel-default.custom_panel.search_box
+  %h4 Search #1
+  %form{ :action => "/wildfires/process_search", :method => "post" }
+    = select(:search, :type, options_for_select([["location", "location"], ["acres (greater than)", "acres"], ["status", "status"]]))
+    %input{ :type => "textfield", :name => "search[criteria]"}
+    %input{ :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token} 
+    %input{ :type => "submit" }
 
 %br
 %br
 %br
+
+.col-lg-12.col-md-12.col-sm-12.panel.panel-default.custom_panel.search_box
+  %h4 Search #2
+  = form_tag(chained_search_wildfires_path, method: "get") do
+    = label_tag(:location, "Find a wildfire by location and status:")
+    = select :search, :state, options_for_select(Location.all.collect {|d| [d.name]})
+    = select :search, :status, options_for_select(["active", "inactive"])
+    / = text_field_tag("search[value]", params[:search])
+
+    = submit_tag("Search")
+
+%br
 %br
 
-%p this is the end of my search
+.col-lg-12.col-md-12.col-sm-12.panel.panel-default.custom_panel.search_box
+  %h4 Search 3: another one
+  = form_tag(another_search_wildfires_path, method: "get") do
+    = label_tag(:location, "Find a wildfire by location:")
+    = text_field_tag(:search, params[:search])
+    = submit_tag("Search")
+
+%br
+%br
+
+.col-lg-12.col-md-12.col-sm-12.panel.panel-default.custom_panel.search_box
+  %h4 Search #4: Search description, status, and incident
+  = form_tag search_everything_wildfires_path, method: "get" do
+    = label_tag "Find (almost) anything:"
+    = text_field_tag(:search, params[:search])
+    = submit_tag("Search")
+
+%br
+%br
+%br
+%br
+
+.col-lg-12.col-md-12.col-sm-12.panel.panel-default.custom_panel.search_box
+  %h4 Search #5: Yep, another search, this one implemented using scopes
+  = form_tag(scoped_search_wildfires_path, method: "get") do
+    = label_tag(:location, "Find a wildfire by location and status:")
+    = select :search, :state, options_for_select(Location.all.collect {|d| [d.name]})
+    = select :search, :status, options_for_select(["active", "inactive"])
+    = label_tag("Acres (Less than)")
+    = text_field_tag "search[acres]"
+    / = text_field_tag("search[value]", params[:search])
+
+    = submit_tag("Search")
+
+%br
+%br

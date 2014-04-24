@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   root 'wildfires#index'
-  get 'wildfires/active' => 'wildfires#active'
-
-  get 'wildfires/inactive' => 'wildfires#inactive'
+  
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -23,6 +21,7 @@ Rails.application.routes.draw do
       resources :wildfires do
         member do
           patch :change_status
+          get :download_fire_image
         end
 
         collection do
@@ -34,6 +33,9 @@ Rails.application.routes.draw do
           get :another_search
           get :search_everything
           get :chained_search
+          get :scoped_search
+          get :active
+          get :inactive
         end
       end
 
